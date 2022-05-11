@@ -46,7 +46,7 @@ export default function Nodes({ $app, initialState, onClick, onBackClick }) {
   //인스턴스화 이후, 바로 render함수 실행, new로 생성하자마자 렌더링
   this.render();
 
-  //nodes ul에 add eventListener capturing
+  //nodes ul에 add eventListener Bubbling
   this.$target.addEventListener("click", (e) => {
     // console.log(e.target);
 

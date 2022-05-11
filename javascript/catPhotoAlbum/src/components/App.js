@@ -77,6 +77,7 @@ export default function App($app) {
               isLoading: false,
             });
 
+            //캐쉬에 삽입
             cache[node.id] = nextNodes;
           }
         } else if (node.type === "FILE") {
@@ -89,6 +90,8 @@ export default function App($app) {
         }
       } catch (e) {
         // 에러처리하기
+        console.error(e);
+        alert("retry");
       }
     },
     onBackClick: async () => {
@@ -123,12 +126,16 @@ export default function App($app) {
         }
       } catch (e) {
         // 에러처리하기
+
+        console.error(e);
+        alert("retry");
       }
     },
   });
 
   const imageView = new ImageView({
     $app,
+    //file을 클릭 시 ImageView에 imageURL 을 넘김
     initialState: this.state.selectedFilePath,
     modalClose: () => {
       this.setState({
@@ -171,6 +178,8 @@ export default function App($app) {
 
       cache.rootNodes = rootNodes;
     } catch (e) {
+      console.error(e);
+      alert("plz refresh");
       // 에러처리 하기
     } finally {
       this.setState({
