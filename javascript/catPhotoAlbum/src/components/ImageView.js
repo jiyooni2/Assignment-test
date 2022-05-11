@@ -1,10 +1,10 @@
-const IMAGE_PATH_PREFIX =
-  "https://fe-dev-matching-2021-03-serverlessdeploymentbuck-t3kpj3way537.s3.ap-northeast-2.amazonaws.com/public";
+const IMG_URL = `https://fe-dev-matching-2021-03-serverlessdeploymentbuck-t3kpj3way537.s3.ap-northeast-2.amazonaws.com/public`;
 
-export default function ImageView({ $app, initialState, modalClose }) {
+export default function ImageView({ $app, initialState }) {
   this.state = initialState;
+
   this.$target = document.createElement("div");
-  this.$target.className = "Modal ImageView";
+  this.$target.className = "Modal ImageViewer";
 
   $app.appendChild(this.$target);
 
@@ -13,32 +13,33 @@ export default function ImageView({ $app, initialState, modalClose }) {
     this.render();
   };
 
-  this.modalClose = modalClose;
+  this.render = () => {
+    if (this.state.selectedFilePath) {
+      this.$target.innerHTML = `<div class="content">
+        <img src="${IMG_URL}${this.state.selectedFilePath}">
+        </div>`;
+    }
 
-  this.addModalCloseEvent = () => {
+    console.log(this.state);
+
+    this.$target.style.display = this.state.selectedFilePath ? "block" : "none";
+  };
+
+  this.addModalCloseListener = () => {
     this.$target.addEventListener("click", (e) => {
-      const $node = e.target.closest(".content");
-
-      if (!$node) {
-        this.modalClose();
+      const $content = e.target.closest(".content");
+      if (!$content) {
+        this.setState({ selectedFilePath: null });
       }
     });
 
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
-        this.modalClose();
+        this.setState({ selectedFilePath: null });
       }
     });
   };
 
-  this.render = () => {
-    this.$target.innerHTML = `<div class="content">${
-      this.state ? `<img src="${IMAGE_PATH_PREFIX}${this.state}">` : ""
-    }</div>`;
-
-    this.$target.style.display = this.state ? "block" : "none";
-  };
-
-  this.addModalCloseEvent();
+  this.addModalCloseListener();
   this.render();
 }
