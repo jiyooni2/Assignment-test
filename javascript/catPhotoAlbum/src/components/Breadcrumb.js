@@ -21,13 +21,16 @@ export default function Breadcrumb({ $app, initialState, onClick }) {
   };
 
   this.$target.addEventListener("click", (e) => {
-    console.log(e.target);
     const $path = e.target.closest("div");
+    if (!$path) {
+      return;
+    }
     const { nodeId } = $path.dataset;
 
     //go to root
     if (!nodeId) {
       this.onClick();
+      return;
     }
 
     const node = this.state.depth.find((node) => node.id === nodeId);
