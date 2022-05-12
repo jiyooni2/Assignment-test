@@ -1,12 +1,14 @@
 const IMG_URL = `https://fe-dev-matching-2021-03-serverlessdeploymentbuck-t3kpj3way537.s3.ap-northeast-2.amazonaws.com/public`;
 
-export default function ImageView({ $app, initialState }) {
+export default function ImageView({ $app, initialState, close }) {
   this.state = initialState;
 
   this.$target = document.createElement("div");
   this.$target.className = "Modal ImageViewer";
 
   $app.appendChild(this.$target);
+
+  this.close = close;
 
   this.setState = (nextState) => {
     this.state = nextState;
@@ -29,13 +31,13 @@ export default function ImageView({ $app, initialState }) {
     this.$target.addEventListener("click", (e) => {
       const $content = e.target.closest(".content");
       if (!$content) {
-        this.setState({ selectedFilePath: null });
+        this.close();
       }
     });
 
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
-        this.setState({ selectedFilePath: null });
+        this.close();
       }
     });
   };
