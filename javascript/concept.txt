@@ -28,3 +28,6 @@ this.render=()=>{} => 호출하는게 아님, 내부적으로 메소드 정의
 
 
 assets의 src는 index.html의 위치 기준이다!!!
+
+fetch시 response의 ok가 true인지 반드시 확인, ok가 아니면 throw new Error("fail");
+
