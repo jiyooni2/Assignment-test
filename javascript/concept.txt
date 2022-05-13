@@ -31,3 +31,14 @@ assets의 src는 index.html의 위치 기준이다!!!
 
 fetch시 response의 ok가 true인지 반드시 확인, ok가 아니면 throw new Error("fail");
 
+새로고침되어도 그대로 되는 것 => localStorage 사용
+styles.css 인것 주의하자
+querySelector가 안먹을 때는 렌더링 된 곳이 어디인가, 부른 곳이 어디인지 반드시 체크하자
+
+API호출이 이상할 경우 절대경로로 바꿔보자
+
+Event
+    입력받는 이벤트
+        input, change
+        keyup
+
