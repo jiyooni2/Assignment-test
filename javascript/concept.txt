@@ -6,8 +6,8 @@ this.render=()=>{} => 호출하는게 아님, 내부적으로 메소드 정의
 
 
     e.target.closet : 현재 클릭한 요소와 제일 인접한 요소 get
-
-
+    e.target.tagName==="" 이런식으로도 쓸 수 있음
+    data-id가 아닌 value에다가 값을 넣고 활용할 수도 있음
 
     element.innerHTML
     element.className
@@ -54,6 +54,10 @@ localStorage
     localStorage.setItem(key,JSON.stringify(value));
 
     localStorage.removeItem(key);
+
+this.state 안에는 되도록 큰 단위로 넣어 보는게 좋다. 다른데서 어디서 어떻게 쓸지 모르기 때문에
+각 컴포넌트의 state에서 쓰는 변수 이름을 꼭 적어두자
+자신이 쓴 구조를 헷갈리기 시작하는 순간부터는 답도 없다
 
 Event
     입력받는 이벤트
