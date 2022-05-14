@@ -37,6 +37,24 @@ querySelector가 안먹을 때는 렌더링 된 곳이 어디인가, 부른 곳�
 
 API호출이 이상할 경우 절대경로로 바꿔보자
 
+SPA routing => location 사용
+location.href 등을 이용해 URL 변경처리를 하면, 브라우저는 해당 페이지로 이동하면서 페이지를 불러옴
+history.pushState를 이용하면 URL만 업데이트 하면서 웹 브라우저의 기본적인 페이지 이동처리가 되는 것을 방지
+페이지가 변경되는 부분만 새로 그리도록 처리!, 화면 새로고침 없이 이동처리를 하려면
+1. 이동할 페이지 URL을 history.pushState를 통해 변경
+2. App.js의 this.route함수 실행
+
+뒤로가기 발생시 popstate eventListener 등록 필요
+
+
+localStorage
+    const value = localStorage.getItem(key);
+    JSON.parse(value);
+    
+    localStorage.setItem(key,JSON.stringify(value));
+
+    localStorage.removeItem(key);
+
 Event
     입력받는 이벤트
         input, change
