@@ -47,10 +47,12 @@ history.pushState를 이용하면 URL만 업데이트 하면서 웹 브라우저
 뒤로가기 발생시 popstate eventListener 등록 필요
 
 
-localStorage
+localStorage > 모든게, array도 다 string으로 저장된다. 당연하게도
     const value = localStorage.getItem(key);
     JSON.parse(value);
     
+    parsing을 거치고 난 뒤에는, '[{},{}]'이런 구조가, JSON으로 바뀜
+
     localStorage.setItem(key,JSON.stringify(value));
 
     localStorage.removeItem(key);
@@ -59,8 +61,28 @@ this.state 안에는 되도록 큰 단위로 넣어 보는게 좋다. 다른데�
 각 컴포넌트의 state에서 쓰는 변수 이름을 꼭 적어두자
 자신이 쓴 구조를 헷갈리기 시작하는 순간부터는 답도 없다
 
+option태그의 value 속성이 있음
+만약, 태그를 쓰다가 이벤트 리스너에서 어떻게 쓸 지 모르겠으면, 구글링
+tag의 속성값이 뭐뭐 있는지 관찰 => mdn option properties
+
+<reduce 잊지 말자>
+reduce함수
+    args : (acc,cur,idx,src) : (누산기,현재값,현재 인덱스, 원본배열)
+            acc와 cur만 필수, 나머지 optional
+    arr.reduce(callback[,initialValue])
+        initialValue안주면 배열의 첫번째 값 사용
+
 Event
     입력받는 이벤트
         input, change
         keyup
 
+특정 element를 알고 싶을 때
+$component.addEventListener("change", (e) => {
+    if (e.target.tagName === "INPUT") {
+
+    }
+}
+
+const $node = e.target.closest("....");
+ 

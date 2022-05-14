@@ -9,10 +9,6 @@ export default function ProductDetailPage({ $target, productId }) {
 
   $page.innerHTML = "<h1>상품 정보</h1>";
 
-  this.render = () => {
-    $target.appendChild($page);
-  };
-
   this.setState = (nextState) => {
     this.state = nextState;
     this.render();
@@ -22,6 +18,7 @@ export default function ProductDetailPage({ $target, productId }) {
     if (!this.state.product) {
       $target.innerHTML = "Loading...";
     } else {
+      //여기서 $target은 메인페이지
       $target.innerHTML = "";
       $target.appendChild($page);
 

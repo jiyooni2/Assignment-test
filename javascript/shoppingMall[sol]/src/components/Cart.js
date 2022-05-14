@@ -36,6 +36,7 @@ export default function Cart({ $target, initialState }) {
         </li>`
       )
       .join("");
+
     $component.innerHTML = `<ul>${cartItemTemplates}</ul>
         <div class="Cart__totalPrice">
             총 상품가격 ${this.getTotalPrice()}원

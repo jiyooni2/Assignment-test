@@ -1,5 +1,5 @@
 import { routeChange } from "./router.js";
-import { getItem, setItem, removeItem } from "./storage.js";
+import { getItem, setItem } from "./storage.js";
 
 export default function SelectedOptions({ $target, initialState }) {
   const $component = document.createElement("div");
@@ -24,6 +24,7 @@ export default function SelectedOptions({ $target, initialState }) {
   };
 
   this.render = () => {
+    //selectedOptions가 없는 경우에 []로 init
     const { product, selectedOptions = [] } = this.state;
 
     const optionTemplates = selectedOptions
@@ -61,10 +62,11 @@ export default function SelectedOptions({ $target, initialState }) {
         if (typeof nextQuantity === "number") {
           const { product } = this.state;
 
-          const optionId = parseInt(e.target.dataset.optionid);
+          const optionId = parseInt(e.target.dataset.optionId);
           const option = product.productOptions.find(
             (option) => option.id === optionId
           );
+          //수량이 바뀌는 경우니까 이미 선택된 옵션들 중에서 존재할 것
           const selectedOptionIndex = nextSelectedOptions.findIndex(
             (selectedOption) => selectedOption.optionId === optionId
           );
@@ -97,9 +99,9 @@ export default function SelectedOptions({ $target, initialState }) {
           }))
         )
       );
-    }
 
-    routeChange("/web/cart");
+      routeChange("/web/cart");
+    }
   });
 
   this.render();

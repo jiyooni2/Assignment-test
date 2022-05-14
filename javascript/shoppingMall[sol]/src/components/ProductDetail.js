@@ -3,7 +3,6 @@ import SelectedOptions from "./SelectedOptions.js";
 export default function ProductDetail({ $target, initialState }) {
   const $productDetail = document.createElement("div");
 
-  let isInitialized = false;
   let selectedOptions = null;
 
   $productDetail.className = "ProductDetail";
@@ -64,13 +63,17 @@ export default function ProductDetail({ $target, initialState }) {
       const selectedOptionId = parseInt(e.target.value);
       const { product, selectedOptions } = this.state;
 
+      //product의 productOptions에서 체크(API체크)
       const option = product.productOptions.find(
         (option) => option.id === selectedOptionId
       );
+
+      //현재 선택된 옵션들 중에 이미 있는지 체크
       const selectedOption = selectedOptions.find(
         (selectedOption) => selectedOption.optionId === selectedOptionId
       );
 
+      //이미 선택된 옵션에 안들어있고, API에서도 있으면, 추가
       if (option && !selectedOption) {
         const nextSelectedOptions = [
           ...selectedOptions,
