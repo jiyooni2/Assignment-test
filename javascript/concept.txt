@@ -75,7 +75,7 @@ reduce함수
 Event
     입력받는 이벤트
         input, change
-        keyup
+        keyup, keydown 등등...  
 
 특정 element를 알고 싶을 때
 $component.addEventListener("change", (e) => {

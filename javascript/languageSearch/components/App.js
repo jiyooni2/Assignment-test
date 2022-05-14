@@ -13,9 +13,10 @@ export default function App($app) {
 
   const submit = () => {
     const selectedItem = this.state.suggestionItems[this.state.selectedIndex];
-    const index = this.state.history.findIndex(
-      (history) => history === selectedItem
-    );
+
+    const { history } = this.state;
+
+    const index = history.findIndex((value) => value === selectedItem);
     if (!selectedItem) {
       return;
     }
@@ -23,24 +24,24 @@ export default function App($app) {
 
     //exist in history
     if (index !== -1) {
-      this.state.history.splice(index, 1);
+      history.splice(index, 1);
 
       this.setState({
         ...this.state,
-        history: [...this.state.history, selectedItem],
+        history: [...history, selectedItem],
       });
       //not exist
     } else {
-      if (this.state.history.length >= 5) {
-        this.state.history.shift();
+      if (history.length >= 5) {
+        history.shift();
         this.setState({
           ...this.state,
-          history: [...this.state.history, selectedItem],
+          history: [...history, selectedItem],
         });
       } else {
         this.setState({
           ...this.state,
-          history: [...this.state.history, selectedItem],
+          history: [...history, selectedItem],
         });
       }
     }
@@ -64,7 +65,12 @@ export default function App($app) {
           selectedIndex: 0,
         });
       } catch (error) {
-        alert("retry");
+        this.setState({
+          ...this.state,
+          keyword: "",
+          suggestionItems: [],
+          selectedIndex: 0,
+        });
       }
     },
     onSubmit: submit,

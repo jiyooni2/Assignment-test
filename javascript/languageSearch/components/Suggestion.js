@@ -24,19 +24,18 @@ export default function Suggestion({
   this.onMouseDown = onMouseDown;
 
   this.render = () => {
-    if (
-      this.state.suggestionItems?.length === 0 ||
-      this.state.suggestionItems === undefined
-    ) {
+    const { suggestionItems = [], selectedIndex } = this.state;
+
+    if (suggestionItems?.length === 0) {
       this.$target.style.display = "none";
       return;
     }
 
     this.$target.style.display = "block";
 
-    const suggestionItemsTemplate = this.state.suggestionItems
+    const suggestionItemsTemplate = suggestionItems
       .map((item, index) => {
-        if (index === this.state.selectedIndex) {
+        if (index === selectedIndex) {
           return `<li class="Suggestion__item--selected" data-index=${index}>${item}</li>`;
         } else {
           return `<li data-index=${index}>${item}</li>`;

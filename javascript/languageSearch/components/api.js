@@ -9,6 +9,6 @@ export const request = async (keyword) => {
     const res = await fetch(`${API_END_POINT}${keyword}`);
     return await res.json();
   } catch (error) {
-    alert("retry");
+    throw new Error("요청 실패");
   }
 };
